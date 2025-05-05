@@ -42,6 +42,9 @@ spec:
                 key: CRAWLER_DB_PATH
       - name: synergychat-crawler-2
         image: bootdotdev/synergychat-crawler:latest
+        volumeMounts:
+        - name: cache-volume
+          mountPath: /cache
         env:
           - name: CRAWLER_PORT
             valueFrom:
@@ -58,11 +61,11 @@ spec:
               configMapKeyRef:
                 name: synergychat-crawler-configmap
                 key: CRAWLER_DB_PATH
+      - name: synergychat-crawler-3
+        image: bootdotdev/synergychat-crawler:latest
         volumeMounts:
         - name: cache-volume
           mountPath: /cache
-      - name: synergychat-crawler-3
-        image: bootdotdev/synergychat-crawler:latest
         env:
           - name: CRAWLER_PORT
             valueFrom:
@@ -79,6 +82,3 @@ spec:
               configMapKeyRef:
                 name: synergychat-crawler-configmap
                 key: CRAWLER_DB_PATH
-        volumeMounts:
-        - name: cache-volume
-          mountPath: /cache
